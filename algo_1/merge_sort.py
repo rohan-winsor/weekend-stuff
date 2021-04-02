@@ -6,26 +6,28 @@ def merge_sort(list1):
         return list1
     left = merge_sort(list1[:len(list1)//2])
     right = merge_sort(list1[len(list1)//2:])
-    return merge_sorted_list(left, right)
+    return merge_sorted_list(left, right, list1)
 
 
-def merge_sorted_list(list1, list2):
-    full_list = []
-    i = j = 0
+def merge_sorted_list(list1, list2, master_list):
+    i = j = k = 0
     while i < len(list1) and j < len(list2):
         if list1[i] < list2[j]:
-            full_list.append(list1[i])
+            master_list[k] = list1[i]
             i += 1
         else:
-            full_list.append(list2[j])
+            master_list[k] = list2[j]
             j += 1
+        k += 1
     while i < len(list1):
-        full_list.append(list1[i])
+        master_list[k] = list1[i]
         i += 1
+        k += 1
     while j < len(list2):
-        full_list.append(list2[j])
+        master_list[k] = list2[j]
         j += 1
-    return full_list
+        k += 1
+    return master_list
 
 
 if __name__ == "__main__":
