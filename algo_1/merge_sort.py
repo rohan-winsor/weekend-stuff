@@ -1,8 +1,11 @@
+import random
+
+
 def merge_sort(list1):
     if len(list1) <= 1:
         return list1
-    left = list1[:len(list1)//2]
-    right = list1[len(list1)//2:]
+    left = merge_sort(list1[:len(list1)//2])
+    right = merge_sort(list1[len(list1)//2:])
     return merge_sorted_list(left, right)
 
 
@@ -26,6 +29,15 @@ def merge_sorted_list(list1, list2):
 
 
 if __name__ == "__main__":
-    list1 = [1, 2, 3, 4, 5]
-    list2 = [1, 4, 5, 6, 7, 8]
-    print(split_list(list1 + list2))
+    while True:
+        val = []
+        for i in range(0, random.randint(10, 100)):
+            val.append(random.randint(5, 10))
+        sorted_val = sorted(val)
+        if merge_sort(val) == sorted_val:
+            print(val)
+            print(merge_sort(val))
+            print("OK")
+        else:
+            print(val)
+            break
